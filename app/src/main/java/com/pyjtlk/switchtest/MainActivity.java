@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     result = "关闭";
                 }
-
-                //Toast.makeText(MainActivity.this,result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,result, Toast.LENGTH_SHORT).show();
             }
         });
     }
