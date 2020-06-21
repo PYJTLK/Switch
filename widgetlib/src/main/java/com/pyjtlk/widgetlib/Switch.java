@@ -382,4 +382,18 @@ public class Switch extends View {
         allowAnim = allow;
         startAnim();
     }
+
+    /**
+     * 设置自定义图案
+     * @param drawable 自定义图案
+     */
+    public void setCustomDrawable(Drawable drawable){
+        if(drawable == null){
+            return;
+        }
+
+        stopAnim();
+        mTriggerDrawable = drawable.mutate();
+        startAnim();
+    }
 }
