@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.pyjtlk.widgetlib.Switch
+        android:id="@+id/MySwitch"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:background="#EFFF0C"
+        app:BackColor="#7E7C7C"
+        app:InsideOnColor="#FF00AA00"
+        app:InsideOffColor="#AA0000"
+        app:OffColor="#FFAAAAAA"
+        app:OnColor="#0000AA"
+        app:InsidePadding="10dp"
+        app:SwitchPadding="5dp"
+        app:radius="30dp"
+        app:allowAnim="true"
+        app:duration="250"/>
+</LinearLayout>

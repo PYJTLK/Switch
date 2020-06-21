@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Switch">
+        <attr name="OnColor" format="color"/>
+        <attr name="OffColor" format="color"/>
+        <attr name="InsideOnColor" format="color"/>
+        <attr name="InsideOffColor" format="color"/>
+        <attr name="BackColor" format="color"/>
+        <attr name="SwitchPadding" format="dimension"/>
+        <attr name="InsidePadding" format="dimension"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="switchOn" format="boolean"/>
+        <attr name="duration" format="integer"/>
+        <attr name="customTriger" format="reference"/>
+        <attr name="allowAnim" format="boolean"/>
+    </declare-styleable>
+</resources>
