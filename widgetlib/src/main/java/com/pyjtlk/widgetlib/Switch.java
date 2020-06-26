@@ -150,7 +150,7 @@ public class Switch extends View {
             width = wrapWidth;
         }
 
-        setMeasuredDimension(width,height);
+        setMeasuredDimension(MeasureSpec.makeMeasureSpec(width,widthMode),MeasureSpec.makeMeasureSpec(height,heightMode));
 
         getPaddingAttr();
     }
