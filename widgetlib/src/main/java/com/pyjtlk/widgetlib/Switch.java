@@ -38,11 +38,18 @@ public class Switch extends View {
     private int mTriggerX;
     private int mTriggerColor;
     private int mInsideColor;
+    private int mStartR;
+    private int mStartG;
+    private int mStartB;
+    private int mEndR;
+    private int mEndG;
+    private int mEndB;
 
     private OnClickListener mOnClickListener;
     private OnStateChangeListener mOnStateChangeListener;
 
     private ValueAnimator mTriggerXAnimator;
+    private ValueAnimator mColorAnimator;
     private int mDuration;
     private boolean allowAnim;
 
@@ -295,23 +302,61 @@ public class Switch extends View {
             mTriggerXAnimator = ValueAnimator.ofInt(onX,offX);
         }
         mTriggerXAnimator.setDuration(allowAnim ? mDuration : 0);
-        mTriggerXAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                //mTriggerColor = switchOn ? mOnColor : mOffColor;
-                mInsideColor = switchOn ? mInsideOnColor : mInsideOffColor;
-                invalidate();
-            }
-        });
         mTriggerXAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 mTriggerX = (int) animation.getAnimatedValue();
-                mTriggerColor = switchOn ? mOnColor : mOffColor;
-                //mInsideColor = switchOn ? mInsideOnColor : mInsideOffColor;
                 invalidate();
             }
         });
+        mTriggerXAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                mTriggerColor = isSwitchOn() ? mOnColor : mOffColor;
+                invalidate();
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
+        });
+
+        mColorAnimator = ValueAnimator.ofFloat(0,1);
+        mColorAnimator.setDuration(allowAnim ? mDuration : 0);
+        mColorAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float factor = (float) animation.getAnimatedValue();
+
+                int startColor = isSwitchOn() ? mInsideOffColor : mInsideOnColor;
+                int endColor = isSwitchOn() ? mInsideOnColor : mInsideOffColor;
+
+                mStartR = Color.red(startColor);
+                mStartG = Color.green(startColor);
+                mStartB = Color.blue(startColor);
+
+                mEndR = Color.red(endColor);
+                mEndG = Color.green(endColor);
+                mEndB = Color.blue(endColor);
+
+                int rCurrent = (int) (mStartR + (mEndR - mStartR) * factor);
+                int gCurrent = (int) (mStartG + (mEndG - mStartG) * factor);
+                int bCurrent = (int) (mStartB + (mEndB - mStartB) * factor);
+
+                mInsideColor = Color.rgb(rCurrent,gCurrent,bCurrent);
+                invalidate();
+            }
+        });
+
+        mColorAnimator.start();
         mTriggerXAnimator.start();
     }
 
