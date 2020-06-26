@@ -6,5 +6,5 @@ allprojects {
 	}
 
 dependencies {
-	        implementation 'com.github.PYJTLK:Switch:1.0'
+	        iimplementation 'com.github.PYJTLK:Switch:1.1'
 	}
